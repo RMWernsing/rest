@@ -6,6 +6,7 @@ export class MissionsController extends BaseController {
     super('api/missions')
     this.router
       .get('', this.getAllMissions)
+      .post('', this.createMission)
   }
 
   /**
@@ -17,6 +18,21 @@ export class MissionsController extends BaseController {
     try {
       const missions = await missionsService.getAllMissions()
       response.send(missions)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+* @param {import("express").Request} request
+* @param {import("express").Response} response
+* @param {import("express").NextFunction} next
+*/
+  async createMission(request, response, next) {
+    try {
+      const missionData = request.body
+      const mission = await missionsService.createMission(missionData)
+      response.send(mission)
     } catch (error) {
       next(error)
     }
