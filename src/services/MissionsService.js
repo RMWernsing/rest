@@ -24,9 +24,11 @@ class MissionsService {
     return mission
   }
 
-  async updateMission(missionId, missionToUpdate) {
+  async updateMission(missionId, updateData) {
     const missionToUpdate = await dbContext.Missions.findById(missionId)
-    missionToUpdate.completed = true
+    missionToUpdate.completed = updateData.completed
+    await missionToUpdate.save()
+    return missionToUpdate
   }
 }
 

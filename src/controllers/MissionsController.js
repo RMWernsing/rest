@@ -7,6 +7,7 @@ export class MissionsController extends BaseController {
     this.router
       .get('', this.getAllMissions)
       .post('', this.createMission)
+      .put('/:missionId', this.updateMission)
   }
 
   /**
