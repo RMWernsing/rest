@@ -33,6 +33,18 @@ export class MissionsController extends BaseController {
       const missionData = request.body
       const mission = await missionsService.createMission(missionData)
       response.send(mission)
+      //comment
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async updateMission(request, response, next) {
+    try {
+      const missionId = request.params.missionId
+      const missionToUpdate = request.body
+      const mission = await missionsService.updateMission(missionId, missionToUpdate)
+      response.send(mission)
     } catch (error) {
       next(error)
     }
